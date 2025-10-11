@@ -1,0 +1,21 @@
+# dotnet
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+
+# coverage / reports
+coverage/
+TestResult*/
+*.trx
+*.coverage*
+*.xml
+
+# VS Code
+.vscode/
+.history/
+
+# OS
+.DS_Store
