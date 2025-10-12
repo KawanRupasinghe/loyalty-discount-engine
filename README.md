@@ -1,4 +1,4 @@
-# Loyalty Discount Engine (CLI + NUnit)
+# Loyalty Discount Engine (.NET + NUnit)
 
 A small, testable **.NET 9** rules engine that applies **one** discount per order (no stacking).  
 **Policy:** Highest discount wins; **tie-break** = `Loyalty > Coupon > Black Friday > Regular`.  
