@@ -8,8 +8,9 @@ A small, testable **.NET 9** rules engine that applies **one** discount per orde
 ---
 
 ## 🧰 Tech Stack
+
 - C# / .NET 9
-- NUnit (+ optional Coverlet for coverage)
+- NUnit (+ Coverlet for coverage)
 - (Optional) Spectre.Console for a nicer CLI dashboard
 
 ---
@@ -42,3 +43,6 @@ dotnet test tests/LoyaltyDiscount.Tests
 └─ tests/
    └─ LoyaltyDiscount.Tests/    # NUnit tests
       └─ DiscountSelectorTests.cs
+
+
+```
