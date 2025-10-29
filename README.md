@@ -30,8 +30,10 @@ dotnet build
 
 #Loyalty member, total 1200
 dotnet run --project src/LoyaltyDiscount.Cli -- --loyalty --total 1200
+
 #Regular customer + 25% coupon, total 250
 dotnet run --project src/LoyaltyDiscount.Cli -- --regular --coupon 25 --total 250
+
 #Coupon 10% + Black Friday, total 99.99
 dotnet run --project src/LoyaltyDiscount.Cli -- --coupon 10 --bf --total 99.99
 
