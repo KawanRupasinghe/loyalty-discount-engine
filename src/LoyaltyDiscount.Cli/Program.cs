@@ -116,11 +116,11 @@ static void RunDemo()
     int pass = 0, total = 0;
     bool T(string n, DiscountRequest r, DiscountKind k, decimal p) { total++; if (Scenario(n, r, k, p)) pass++; return true; }
 
-    T("Loyalty beats BF",     new(100, true,  false, true,  CouponType.None),       DiscountKind.Loyalty,     0.20m);
-    T("Coupon25 > Loyalty",   new(100, true,  false, false, CouponType.TwentyFive), DiscountKind.Coupon25,    0.25m);
-    T("Regular vs BF",        new(100, false, true,  true,  CouponType.None),       DiscountKind.Regular,     0.10m);
-    T("Coupon10 tie 10%",     new(100, false, true,  false, CouponType.Ten),        DiscountKind.Coupon10,    0.10m);
-    T("BF only",              new(100, false, false, true,  CouponType.None),       DiscountKind.BlackFriday, 0.05m);
+    T("Loyalty beats BF", new(100, true, false, true, CouponType.None), DiscountKind.Loyalty, 0.20m);
+    T("Coupon25 > Loyalty", new(100, true, false, false, CouponType.TwentyFive), DiscountKind.Coupon25, 0.25m);
+    T("Regular vs BF", new(100, false, true, true, CouponType.None), DiscountKind.Regular, 0.10m);
+    T("Coupon10 tie 10%", new(100, false, true, false, CouponType.Ten), DiscountKind.Coupon10, 0.10m);
+    T("BF only", new(100, false, false, true, CouponType.None), DiscountKind.BlackFriday, 0.05m);
 
     var panel = new Panel(new Markup($"[bold]Summary:[/] [green]{pass}[/] / {total} passed"))
         .Header("[white]RESULT[/]").Border(BoxBorder.Rounded);
