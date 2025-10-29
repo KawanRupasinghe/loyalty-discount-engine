@@ -42,7 +42,13 @@ dotnet run --project src/LoyaltyDiscount.Cli -- --demo
 
 # 4) Run tests
 dotnet test tests/LoyaltyDiscount.Tests
+```
 
+---
+
+## 📁 Project Structure
+
+```bash
 .
 ├─ src/
 │  ├─ LoyaltyDiscount/          # Class Library (business rules)
@@ -52,6 +58,6 @@ dotnet test tests/LoyaltyDiscount.Tests
 └─ tests/
    └─ LoyaltyDiscount.Tests/    # NUnit tests
       └─ DiscountSelectorTests.cs
-
-
 ```
+
+
