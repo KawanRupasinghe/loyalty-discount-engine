@@ -61,3 +61,72 @@ dotnet test tests/LoyaltyDiscount.Tests
 ```
 
 
+---
+
+## 🧪 Tests & results (TRX)
+
+You can generate a Visual Studio TRX test results file locally and in CI. This is helpful for sharing results, attaching them to PRs, or viewing detailed run logs.
+
+### Run locally and create TRX
+
+```bash
+# From the repo root
+dotnet test LoyaltyDiscount.sln \
+   --logger "trx;LogFileName=TestResults.trx" \
+   --results-directory "./TestResults"
+```
+
+- Output path: `TestResults/TestResults.trx`
+- Open the file in VS Code (it’s XML), or use any TRX viewer extension if you prefer a richer UI.
+
+### VS Code one-click task
+
+This repo includes a task to generate TRX without typing commands:
+
+- Terminal → Run Task → `test:trx`
+
+Under the hood this runs `dotnet test` with the TRX logger and writes to `./TestResults`.
+
+### GitHub Actions (CI)
+
+There are two workflows you may use in this repo:
+
+1) Multi-OS matrix (file: `.github/workflows/ci.yml`)
+   - Runs on: `ubuntu-latest`, `windows-latest`, `macos-latest`
+   - Uploads per-OS artifacts named:
+     - `test-results-ubuntu-latest`
+     - `test-results-windows-latest`
+     - `test-results-macos-latest`
+   - Each artifact contains one or more TRX files under `**/TestResults/*.trx`.
+
+2) Single-OS workflow (file: `.github/workflows/dotnet-tests.yml`)
+   - Runs on: `ubuntu-latest`
+   - Uploads a single artifact named: `test-results-trx`
+   - TRX path: `TestResults/TestResults.trx`
+
+Where to view:
+
+- Pull Requests → Checks → “.NET Tests” (or “CI”) → Test results summary (published via the workflow)
+- Actions → latest run → Artifacts → download the artifact for your OS (or `test-results-trx`)
+
+### Azure DevOps (Pipeline)
+
+Pipeline definition: `azure-pipelines.yml`
+
+How to enable:
+
+1) In Azure DevOps → Pipelines → New pipeline → point to `azure-pipelines.yml`
+2) Save & run (pipeline triggers on pushes to `main`)
+
+Where to view:
+
+- Pipeline run → “Tests” tab (TRX is published via `PublishTestResults@2`)
+- Artifacts (if you additionally choose to publish files there)
+
+### Troubleshooting
+
+- No TRX file? Ensure the `--logger trx` and `--results-directory` arguments are present and the folder exists/writable.
+- CI job shows no tests? Confirm test project targets the same .NET SDK that the runner installs (this repo uses .NET 9).
+- PR “Checks” don’t show test details on forks? Some GitHub permission settings can limit write access to Checks for forked PRs; artifacts still upload.
+
+
