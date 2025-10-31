@@ -1,0 +1,31 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET SDK 9.x'
+    inputs:
+      packageType: 'sdk'
+      version: '9.x'
+
+  - script: dotnet restore LoyaltyDiscount.sln
+    displayName: 'Restore'
+
+  - script: |
+      dotnet test LoyaltyDiscount.sln \
+        --configuration Release \
+        --logger "trx;LogFileName=TestResults.trx" \
+        --results-directory "$(Build.SourcesDirectory)/TestResults"
+    displayName: 'Test'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish TRX results'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'VSTest'
+      testResultsFiles: '$(Build.SourcesDirectory)/TestResults/*.trx'
+      testRunTitle: 'LoyaltyDiscount Tests'
+      failTaskOnFailedTests: true
