@@ -51,13 +51,29 @@ dotnet test tests/LoyaltyDiscount.Tests
 ```bash
 .
 ├─ src/
-│  ├─ LoyaltyDiscount/          # Class Library (business rules)
-│  │  └─ DiscountEngine.cs
-│  └─ LoyaltyDiscount.Cli/      # Console app (friendly runner)
-│     └─ Program.cs
-└─ tests/
-   └─ LoyaltyDiscount.Tests/    # NUnit tests
-      └─ DiscountSelectorTests.cs
+│  ├─ LoyaltyDiscount/                 # Class Library (business rules)
+│  │  ├─ LoyaltyDiscount.cs
+│  │  └─ LoyaltyDiscount.csproj
+│  └─ LoyaltyDiscount.Cli/             # Console app (friendly runner)
+│     ├─ Program.cs
+│     └─ LoyaltyDiscount.Cli.csproj
+├─ tests/
+│  └─ LoyaltyDiscount.Tests/           # NUnit tests
+│     ├─ DecisionTableTests.cs
+│     ├─ DiscountSelectorTests.cs
+│     ├─ RoundingAndValidationTests.cs
+│     ├─ TieBreakAndPolicyTests.cs
+│     └─ LoyaltyDiscount.Tests.csproj
+├─ .github/
+│  └─ workflows/
+│     ├─ ci.yml
+│     └─ dotnet-tests.yml
+├─ .vscode/
+│  ├─ tasks.json
+│  └─ extensions.json
+├─ azure-pipelines.yml
+├─ LoyaltyDiscount.sln
+└─ README.md
 ```
 
 
