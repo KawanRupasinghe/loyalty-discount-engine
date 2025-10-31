@@ -87,6 +87,14 @@ This repo includes a task to generate TRX without typing commands:
 
 Under the hood this runs `dotnet test` with the TRX logger and writes to `./TestResults`.
 
+### View TRX in VS Code
+
+- Recommended extension: TRX File Viewer (see below to install)
+- After installing, right-click a `.trx` file → "Open With..." → select "TRX File Viewer"
+- Or just click the `.trx` file; the extension may register itself as the default editor
+
+Recommended workspace extension is declared in `.vscode/extensions.json`, so VS Code should prompt you to install it on open.
+
 ### GitHub Actions (CI)
 
 There are two workflows you may use in this repo:
