@@ -33,8 +33,8 @@ public class DiscountSelectorTests
     {
         var decision = DiscountSelector.Select(R(100m, loyalty, regular, bf, coupon));
 
-        TestContext.WriteLine($"Input => loyalty={loyalty}, regular={regular}, bf={bf}, coupon={coupon}");
-        TestContext.WriteLine($"Applied => {decision.Kind} ({decision.Percentage:P0}) Expect => {expectedKind} ({expectedPct:P0})");
+    TestContext.Out.WriteLine($"Input => loyalty={loyalty}, regular={regular}, bf={bf}, coupon={coupon}");
+    TestContext.Out.WriteLine($"Applied => {decision.Kind} ({decision.Percentage:P0}) Expect => {expectedKind} ({expectedPct:P0})");
 
         Assert.That(decision.Kind, Is.EqualTo(expectedKind), "Wrong discount kind selected.");
         Assert.That((double)decision.Percentage, Is.EqualTo(expectedPct).Within(1e-9), "Wrong percentage applied.");
@@ -45,7 +45,7 @@ public class DiscountSelectorTests
     public void Loyalty_over_regular_if_both_true()
     {
         var d = DiscountSelector.Select(R(loyalty: true, regular: true));
-        TestContext.WriteLine($"Both flags true => Applied {d.Kind}");
+    TestContext.Out.WriteLine($"Both flags true => Applied {d.Kind}");
         Assert.That(d.Kind, Is.EqualTo(DiscountKind.Loyalty), "Loyalty must outrank Regular when both are true.");
     }
 
@@ -55,7 +55,7 @@ public class DiscountSelectorTests
     {
         var d = DiscountSelector.Select(R(total: 123.456m, regular: true)); // 10%
         var price = DiscountSelector.ApplyFinalPrice(123.456m, d);
-        TestContext.WriteLine($"Rounded Price => {price}");
+    TestContext.Out.WriteLine($"Rounded Price => {price}");
         Assert.That(price, Is.EqualTo(111.11m)); // 123.456 * 0.90 = 111.1104 -> 111.11
     }
 
