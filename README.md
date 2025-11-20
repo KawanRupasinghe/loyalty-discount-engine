@@ -111,6 +111,7 @@ Under the hood this runs `dotnet test` with the TRX logger and writes to `./Test
 
 Recommended workspace extension is declared in `.vscode/extensions.json`, so VS Code should prompt you to install it on open.
 
+
 ### GitHub Actions (CI)
 
 There are two workflows you may use in this repo:
@@ -146,6 +147,7 @@ Where to view:
 
 - Pipeline run → “Tests” tab (TRX is published via `PublishTestResults@2`)
 - Artifacts (if you additionally choose to publish files there)
+
 
 ### Troubleshooting
 
